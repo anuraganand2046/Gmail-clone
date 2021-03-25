@@ -21,10 +21,16 @@ function EmailRow({key, time, id, title, subject, description}){
         history.push('/mail')
     }
     const star=()=>{
-        // db.collection('emails').doc(doc.id).update({
-        //     starred: true,
-        // })
-    };
+        db.collection("emails").doc(id).update({
+            "starred": true,
+        })
+        .then(()=>{
+            console.log("Document successfully updated");
+        })
+        .catch((e)=>{
+            console.log("error occurred", e);
+        })
+    }
     return (
         <div className= "row">
             <div className= "emailRow__options">
