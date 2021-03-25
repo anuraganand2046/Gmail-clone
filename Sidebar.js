@@ -23,7 +23,7 @@ const Sidebar=()=>{
     const [p, setP]=useState([]);
     useEffect(()=>{
         setP(window.location.pathname)
-    }, window.location.pathname)
+    },)
     return (
         <div className= "sidebar">
             <Button onClick={()=>dispatch(openSendMessage())} startIcon= {<AddIcon fontSize= "large"/>} className= "sidebar__compose">COMPOSE</Button>
