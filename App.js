@@ -7,6 +7,7 @@ import Mail from './Mail';
 import SendMail from './SendMail';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectSendMessageIsOpen} from './features/mailSlice';
+import Layout from './Layout';
 import {selectUser, login, logout} from './features/userSlice';
 import Starred from './Starred';
 import Important from './Important';
@@ -44,26 +45,13 @@ function App() {
         (<div className="app">
           <Header/>
           <div className= "app__body">
-            <Sidebar />
             <Switch>
-              <Route path exact = {true}>
-                <EmailList />
-              </Route>
-              <Route path= "/mail">
-                <Mail />
-              </Route>
-              <Route path= "/starred">
-                <Starred />
-              </Route>
-              <Route path= "/important">
-                <Important />
-              </Route>
-              <Route path= "/sent">
-                <Sent />
-              </Route>
-              <Route path= "/drafts">
-                <Drafts />
-              </Route>
+              <Layout path="/" exact component={EmailList} />
+              <Layout path= "/mail" component={Mail} />
+              <Layout path= "/starred" component={Starred} />
+              <Layout path= "/sent" component={Sent} />
+              <Layout path= "/important" component={Important} />
+              <Layout path= "/drafts" component={Drafts} />
             </Switch>
           </div>
           {SendMessageIsOpen&&<SendMail/>}
