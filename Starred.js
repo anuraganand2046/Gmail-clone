@@ -11,7 +11,9 @@ function Starred(){
         onSnapshot(snapshot=> setStarred(snapshot.docs.map(doc=>({
             id: doc.id,
             data: doc.data(),
-        }))))
+        })).filter((obj)=>{
+            return obj.data.starred;
+        })))
     }, []);
     return (
         <div className= "starred">
@@ -21,7 +23,6 @@ function Starred(){
             </div>
             <div className= "starredList__list">
                 {starred.map(({id, data: {message, subject, timestamp, to}})=>(
-
                     <EmailRow
                         key= {id}
                         id= {id}
