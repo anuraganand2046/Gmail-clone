@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './EmailList.css';
-import Section from './Section';
 import EmailRow from './EmailRow';
-import InboxIcon from '@material-ui/icons/Inbox';
-import PeopleIcon from '@material-ui/icons/People';
+import EmailListSection from './EmailListSection';
 import EmailListSettingLeft from './EmailListSettingLeft';
 import EmailListSettingRight from './EmailListSettingRight';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import { db } from './firebase';
 function EmailList(){
     const [emails, setEmails]= useState([]);
@@ -23,13 +20,8 @@ function EmailList(){
                 {<EmailListSettingLeft />}
                 {<EmailListSettingRight />}
             </div>
-            <div className= "emailList__sections">
-                <Section title= "Primary" Icon= {InboxIcon} selected= {true} color= "red" />
-                <Section title= "Social" Icon= {PeopleIcon} selected= {false} color= "#1A73E8" />
-                <Section title= "Promotions" Icon= {LocalOfferIcon} selected= {false} color= "green" />
-            </div>
+            {<EmailListSection/>}
             <div className= "emailList__list">
-                {console.log(emails)}
                 {emails.map(({id, data: {message, subject, timestamp, to}})=>(
                     <EmailRow
                         key= {id}
